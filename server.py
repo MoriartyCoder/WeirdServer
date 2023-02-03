@@ -24,6 +24,15 @@ while True:
         # if data is not received break
         break
     print("from connected user: " + str(data))
+    print()
+    data = input(' -> ')
+    conn.send(data.encode())  # send data to the client
 
-
+    num = conn.recv(1024).decode()
+    if not num:
+        break
+    print("From user: " + str(num))
+    print('Received from server: ' + num)  # show in terminal
+    print(num)
+    conn.send(num.encode())  # send data to the client
 conn.close()  # close the connection
